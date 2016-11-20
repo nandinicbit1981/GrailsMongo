@@ -35,7 +35,7 @@ class CharactersController {
         //respond charactersInstance
         System.out.println("nandini");
         println Characters.list().size();
-        render(view: '/all', model: [ characters: Characters.list() ])
+        render(view: 'all', model: [ characters: Characters.list() ])
     }
 
     def createForm(){

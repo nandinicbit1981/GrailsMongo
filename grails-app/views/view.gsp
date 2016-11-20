@@ -33,6 +33,7 @@
                     <a href="characters/createForm">
                         <span class="text-white">create</span>
                     </a>
+
                     %{--<a href="/characters/create"><span class="text-white">Create</span></a>--}%
                 </li>
             </ul>

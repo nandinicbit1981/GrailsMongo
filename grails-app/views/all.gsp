@@ -3,15 +3,15 @@
     <title>Crush the Rust</title>
 </head>
 
-<asset:javascript src="jquery.min.js"/>
-<asset:javascript src="main.js"/>
-<asset:javascript src="bootstrap.js"/>
-<asset:stylesheet src="main.css"/>
-<asset:stylesheet src="bootstrap.css"/>
-<asset:stylesheet src="bootstrap.css"/>
-<asset:stylesheet src="bootstrap-theme.min.css"/>
-<asset:stylesheet src="main.css"/>
-<asset:stylesheet src="style.css"/>
+<asset:javascript src="/jquery.min.js"/>
+<asset:javascript src="/main.js"/>
+<asset:javascript src="/bootstrap.js"/>
+<asset:stylesheet src="/main.css"/>
+<asset:stylesheet src="/bootstrap.css"/>
+<asset:stylesheet src="/bootstrap.css"/>
+<asset:stylesheet src="/bootstrap-theme.min.css"/>
+<asset:stylesheet src="/main.css"/>
+<asset:stylesheet src="/style.css"/>
 <body class="background-dd">
 <nav class="navbar navbar-default">
     <div class="container-fluid">

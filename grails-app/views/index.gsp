@@ -142,7 +142,7 @@
 <body class="background-dd">
 <div class="button-div center">
     <div class="btn btn-lg" id="start">
-        <a href="/characters">
+        <a href="characters">
             <span class="text-white h3" style="text-decoration: underline;">Start Here Gamer!</span>
         </a>
     </div>

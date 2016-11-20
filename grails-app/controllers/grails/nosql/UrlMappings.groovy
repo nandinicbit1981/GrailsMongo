@@ -10,6 +10,9 @@ class UrlMappings {
         }
 
         "/"(view:"/index")
+        "/$controller/$action?/$id?"(parseRequest:true){  constraints {
+            action = [GET:"index", POST:"save", PUT:"update", DELETE:"remove"]
+        } }
         "500"(view:'/error')
         "404"(view:'/notFound')
     }

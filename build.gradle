@@ -48,6 +48,9 @@ dependencies {
     console "org.grails:grails-console"
 
     compile 'org.grails.plugins:mongodb:6.0.4'
+    // https://mvnrepository.com/artifact/com.gmongo/gmongo
+    compile group: 'com.gmongo', name: 'gmongo', version: '1.5'
+
     profile "org.grails.profiles:web"
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.11.6"
     runtime "com.h2database:h2"

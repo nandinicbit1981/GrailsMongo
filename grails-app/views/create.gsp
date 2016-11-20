@@ -26,13 +26,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="${resource()}/characters/" >
+                    <a href="/characters/" >
                         <span class="text-white">all</span>
                     </a>
 
                 </li>
                 <li>
-                    <a href="${resource()}/characters/createForm">
+                    <a href="/characters/createForm">
                         <span class="text-white">create</span>
                     </a>
                     %{--<a href="/characters/create"><span class="text-white">Create</span></a>--}%

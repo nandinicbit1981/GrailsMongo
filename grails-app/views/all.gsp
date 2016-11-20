@@ -24,7 +24,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="${resource()}/characters/" >
+                    <a href="/characters/" >
                         <span class="text-white">all</span>
                     </a>
 
@@ -60,9 +60,9 @@
                 <td>${c.name}</td>
                 <td>${c.className}</td>
                 <td>${c.race}</td>
-                <td><a href="${resource()}/characters/html/${c.id}" class="view-character" data-id="{{id}}">view</a></td>
-                <td><a href="${resource()}/characters/json/${c.id}">json</a></td>
-                <td><a href="${resource()}/characters/editForm/${c.id}">edit</a></td>
+                <td><a href="/characters/html/${c.id}" class="view-character" data-id="${c.id}">view</a></td>
+                <td><a href="/characters/json/${c.id}">json</a></td>
+                <td><a href="/characters/editForm/${c.id}">edit</a></td>
             </tr>
            </g:each>
             </tbody>

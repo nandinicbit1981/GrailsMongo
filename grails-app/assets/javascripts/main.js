@@ -231,6 +231,20 @@ $(document).ready(function() {
         }
         http.send(params);
     };
+    function get_character(url,params){
+        var http = new XMLHttpRequest();
+        var url = url;
+        var params = params;
+        http.open("GET", url, true);
+        http.onreadystatechange = function() {
+            //Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                console.log(http.responseText);
+                window.location.href = "/characters";
+            }
+        }
+        http.send(params);
+    };
 
     function delete_character(url){
         var http = new XMLHttpRequest();

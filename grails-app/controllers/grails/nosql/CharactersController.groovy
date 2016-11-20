@@ -1,5 +1,7 @@
 package grails.nosql
 
+import com.gmongo.GMongo
+import org.bson.types.ObjectId
 import grails.converters.JSON
 import groovy.json.JsonBuilder
 
@@ -12,6 +14,8 @@ class CharactersController {
 
     @Value('${foo.bar.hello}')
     String recipient
+    def mongo = new GMongo()
+    def db = mongo.getDB("DungeonsAndDragons")
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -39,21 +43,23 @@ class CharactersController {
     }
 
     def editForm(){
-        render(view: '/edit', model: [ characters: Characters.findById(params.int('id')) ])
+        Characters characters=  Characters.findById(new ObjectId(params.get('id')));
+        render(view: '/edit', model: [ characters: characters ])
     }
 
     def html(){
-        render(view: '/view', model: [ characters: Characters.findById(params.int('id')) ])
+        Characters characters=  Characters.findById(new ObjectId(params.get('id')));
+        render(view: '/view', model: [ characters: characters])
     }
 
     def json(){
-        render Characters.findById(params.int('id')) as JSON
+        render Characters.findById(new ObjectId(params.get('id'))) as JSON
     }
 
     def deleteCharacter() {
-
-        Characters newCharacters = Characters.findById(params.int('id'));
-        delete(newCharacters)
+        Characters newCharacters = Characters.findById(new ObjectId(params.get('id')));
+        delete(newCharacters);
+        render(view: '/all', model: [ characters: Characters.list() ])
     }
 
 
@@ -98,11 +104,12 @@ class CharactersController {
     def edit() {
         def jsonString = request.JSON//returns null:q
         Characters newCharacters = new Characters(jsonString);
-        Characters oldCharacters = Characters.findById(newCharacters.id);
-        oldCharacters.setProperties(newCharacters.properties);
+        newCharacters.setId(new ObjectId(jsonString.get("id")));
+        Characters oldCharacters=  Characters.findById(newCharacters.id);
 
-        update(oldCharacters)
-        //respond charactersInstance
+        oldCharacters.setProperties(newCharacters.properties);
+        update(oldCharacters);
+        render(view: '/all', model: [ characters: Characters.list() ])
     }
 
     @Transactional
@@ -112,20 +119,15 @@ class CharactersController {
             return
         }
 
+        println "took me 2 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
+
         if (charactersInstance.hasErrors()) {
-            respond charactersInstance.errors, view:'edit'
+            respond charactersInstance.errors, view:'/edit'
             return
         }
-
+        println(charactersInstance.id)
         charactersInstance.save flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: "Some data", default: 'Characters'), charactersInstance.id])
-                redirect charactersInstance
-            }
-            '*'{ respond charactersInstance, [status: OK] }
-        }
     }
 
     @Transactional
@@ -135,6 +137,7 @@ class CharactersController {
             notFound()
             return
         }
+
 
         charactersInstance.delete flush:true
 

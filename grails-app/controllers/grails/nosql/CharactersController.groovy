@@ -49,7 +49,9 @@ class CharactersController {
 
     def html(){
         Characters characters=  Characters.findById(new ObjectId(params.get('id')));
-        render(view: 'view', model: [ characters: characters])
+        println "Check this";
+        println characters.id;
+        render(view: 'viewChar', model: [ characters: characters])
     }
 
     def json(){

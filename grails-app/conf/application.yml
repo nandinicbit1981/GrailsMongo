@@ -19,6 +19,9 @@ spring:
         template:
             check-template-location: false
 
+server:
+    contextPath: /myapp
+
 # Spring Actuator Endpoints are Disabled by Default
 endpoints:
     enabled: false

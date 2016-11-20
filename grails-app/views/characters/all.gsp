@@ -13,10 +13,14 @@
 <asset:stylesheet src="/main.css"/>
 <asset:stylesheet src="/style.css"/>
 <body class="background-dd">
+<g:javascript>
+   window.appContext = '${request.contextPath}';
+</g:javascript>
+<meta name="appContext" content="${request.contextPath}" />
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand text-white" href="${resource()}" >
+            <a class="navbar-brand text-white" href="${request.contextPath}" >
                 <span class="text-white h4">Dungeons & Dragons</span>
             </a>
         </div>
@@ -24,13 +28,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="characters/" >
+                    <a href="${request.contextPath}/characters/" >
                         <span class="text-white">all</span>
                     </a>
 
                 </li>
                 <li>
-                    <a href="characters/createForm">
+                    <a href="${request.contextPath}/characters/createForm">
                         <span class="text-white">create</span>
                     </a>
                     %{--<a href="/characters/create"><span class="text-white">Create</span></a>--}%
@@ -60,9 +64,9 @@
                 <td>${c.name}</td>
                 <td>${c.className}</td>
                 <td>${c.race}</td>
-                <td><a href="/characters/html/${c.id}" class="view-character" data-id="${c.id}">view</a></td>
-                <td><a href="/characters/json/${c.id}">json</a></td>
-                <td><a href="/characters/editForm/${c.id}">edit</a></td>
+                <td><a href="${request.contextPath}/characters/html/${c.id}" class="view-character" data-id="${c.id}">view</a></td>
+                <td><a href="${request.contextPath}/characters/json/${c.id}">json</a></td>
+                <td><a href="${request.contextPath}/characters/editForm/${c.id}">edit</a></td>
             </tr>
            </g:each>
             </tbody>

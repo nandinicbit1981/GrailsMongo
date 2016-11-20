@@ -39,17 +39,17 @@ class CharactersController {
     }
 
     def createForm(){
-        render(view: '/create')
+        render(view: 'create')
     }
 
     def editForm(){
         Characters characters=  Characters.findById(new ObjectId(params.get('id')));
-        render(view: '/edit', model: [ characters: characters ])
+        render(view: 'edit', model: [ characters: characters ])
     }
 
     def html(){
         Characters characters=  Characters.findById(new ObjectId(params.get('id')));
-        render(view: '/view', model: [ characters: characters])
+        render(view: 'view', model: [ characters: characters])
     }
 
     def json(){
@@ -59,7 +59,7 @@ class CharactersController {
     def deleteCharacter() {
         Characters newCharacters = Characters.findById(new ObjectId(params.get('id')));
         delete(newCharacters);
-        render(view: '/all', model: [ characters: Characters.list() ])
+        render(view: 'all', model: [ characters: Characters.list() ])
     }
 
 
@@ -67,7 +67,7 @@ class CharactersController {
         def jsonString = request.JSON//returns null:q
         Characters characters = new Characters(jsonString);
         save(characters);
-        render(view: '/all', model: [ characters: Characters.list() ])
+        render(view: 'all', model: [ characters: Characters.list() ])
 
     }
 
@@ -109,7 +109,7 @@ class CharactersController {
 
         oldCharacters.setProperties(newCharacters.properties);
         update(oldCharacters);
-        render(view: '/all', model: [ characters: Characters.list() ])
+        render(view: 'all', model: [ characters: Characters.list() ])
     }
 
     @Transactional
@@ -118,8 +118,6 @@ class CharactersController {
             notFound()
             return
         }
-
-        println "took me 2 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
 
         if (charactersInstance.hasErrors()) {
             respond charactersInstance.errors, view:'/edit'
@@ -140,14 +138,6 @@ class CharactersController {
 
 
         charactersInstance.delete flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Characters.label', default: 'Characters'), charactersInstance.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
     }
 
     protected void notFound() {
